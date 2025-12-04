@@ -17,8 +17,10 @@ const corsOptions = {
     ? [
         'https://pirs-kurmanci.vercel.app',
         'https://pirs-flutter.vercel.app',
+        'https://pirs-kurmanci.onrender.com',
         /\.vercel\.app$/,
         /\.netlify\.app$/,
+        /\.onrender\.com$/,
       ]
     : ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:8080'],
   credentials: true,
