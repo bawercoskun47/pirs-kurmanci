@@ -133,6 +133,47 @@ async function main() {
     // WÊJE - Medium
     { text: "Kî nivîskarê 'Hamlet' e?", optionA: "Dickens", optionB: "Shakespeare", optionC: "Tolstoy", optionD: "Dostoevsky", correctOption: "B", difficulty: "medium", categoryId: weje.id },
     { text: "Kî helbestvanê navdar ê Kurd e ku bi navê 'Cegerxwîn' tê nasîn?", optionA: "Şêx Seîd", optionB: "Şêxmûs Hesen", optionC: "Qedrî Can", optionD: "Pîremêrd", correctOption: "B", difficulty: "medium", categoryId: weje.id },
+
+    // NEW SET - richer mix, some with visuals
+    // GİŞTÎ
+    { text: "Rengê bayraqa Kurdistanê çi hene?", optionA: "Sor, spî, kesk, zêr", optionB: "Sor, reş, spî", optionC: "Sor, kesk, zêr", optionD: "Reş, spî, kesk", correctOption: "A", difficulty: "easy", categoryId: gisti.id, imageUrl: "https://i.imgur.com/8fK8e7B.png" },
+    { text: "NASA yekem car li ser çî ye hate damezrandin?", optionA: "Arastakirinê derve avêtin", optionB: "Lîstinê navkî", optionC: "Araştina astengî", optionD: "Programên hêlîkoptera", correctOption: "A", difficulty: "medium", categoryId: gisti.id },
+    { text: "Kîjan têkiliyê li binpêjê heye?", optionA: "Sînorên DNA", optionB: "Grafên blockchain", optionC: "API Gateway", optionD: "Protokola HTTP", correctOption: "D", difficulty: "hard", categoryId: gisti.id },
+
+    // DÎROK
+    { text: "Çapemenîya 'Hawar' ji aliyê kê ve hate destpêkirin?", optionA: "Celadet Bedirxan", optionB: "Ehmedê Xanî", optionC: "Said Nursî", optionD: "Abdullah Cevdet", correctOption: "A", difficulty: "medium", categoryId: dirok.id, imageUrl: "https://i.imgur.com/Q2KX7wq.png" },
+    { text: "Navê fermî ya serpersta Navneteweyî ya Kurdî çi ye?", optionA: "ENKS", optionB: "KNK", optionC: "KOMA", optionD: "UNPO", correctOption: "B", difficulty: "hard", categoryId: dirok.id },
+    { text: "Dîrokê Navîn de li Mezopotamyayê kîjan çem herî gelek navdar e?", optionA: "Dîcle", optionB: "Ferat", optionC: "Nîl", optionD: "Amazon", correctOption: "B", difficulty: "easy", categoryId: dirok.id },
+
+    // ERDNÎGARÎ
+    { text: "Li Çiyayê Nemrutê çi monument heye?", optionA: "Heykelên kommagên derbar", optionB: "Qesra Romayê", optionC: "Piramîd", optionD: "Colosseum", correctOption: "A", difficulty: "medium", categoryId: erdnigari.id, imageUrl: "https://i.imgur.com/2QJXvZ4.jpeg" },
+    { text: "Li kîjan bajarê Kurdistanê 'Bajarê Gulên' tê gotin?", optionA: "Silemanî", optionB: "Hewlêr", optionC: "Duhok", optionD: "Amed", correctOption: "A", difficulty: "easy", categoryId: erdnigari.id },
+    { text: "Parîs di çend arrondissementan tê parçe kirin?", optionA: "12", optionB: "16", optionC: "20", optionD: "24", correctOption: "C", difficulty: "hard", categoryId: erdnigari.id },
+
+    // ZANIST
+    { text: "Teleskopa JWST di kîjan spektrumê de pir carî dixebite?", optionA: "Gamma", optionB: "Ultraviyole", optionC: "Nêzikî infirared", optionD: "Radyoyî", correctOption: "C", difficulty: "medium", categoryId: zanist.id, imageUrl: "https://i.imgur.com/vGf6cPM.jpeg" },
+    { text: "CRISPR çi dikare biguherîne?", optionA: "Temperaturên hava", optionB: "Genan", optionC: "Rengên li şev", optionD: "Qada xwê", correctOption: "B", difficulty: "medium", categoryId: zanist.id },
+    { text: "Superconductivity li kîjan hewayê diyar dibe?", optionA: "Jorra germ", optionB: "Jorra sar", optionC: "Seredana kuştî", optionD: "Vêneya proton", correctOption: "B", difficulty: "hard", categoryId: zanist.id },
+
+    // ZIMAN
+    { text: "'Ez ji te re sipas dikim' çi wateyê dide?", optionA: "Benim için çalış", optionB: "Senin için teşekkür ederim", optionC: "Senden özür dilerim", optionD: "Seni beklerim", correctOption: "B", difficulty: "easy", categoryId: ziman.id },
+    { text: "'Gava ku' destpêka çi tiştan e?", optionA: "Sebê", optionB: "Hejmara", optionC: "Zemana", optionD: "Poste", correctOption: "C", difficulty: "medium", categoryId: ziman.id },
+    { text: "Li kurmancî navdêrên hevber (conjunction) bi awayekî rast kîjan e?", optionA: "Heke ... gelek", optionB: "Û ... û", optionC: "Û ... an jî", optionD: "An ... an", correctOption: "C", difficulty: "hard", categoryId: ziman.id },
+
+    // WERZÎŞ
+    { text: "Li kîjan timê basketbolê 'Triangle Offense' hat populer kirin?", optionA: "Chicago Bulls", optionB: "Lakers", optionC: "Celtics", optionD: "Spurs", correctOption: "A", difficulty: "medium", categoryId: werzis.id },
+    { text: "VAR di futbola nêzîk da çi ye?", optionA: "Video Assistant Referee", optionB: "Virtual Attack Rank", optionC: "Value Added Run", optionD: "Visual Analyzer Referee", correctOption: "A", difficulty: "easy", categoryId: werzis.id },
+    { text: "Maraton çend kilometre ye?", optionA: "21.1", optionB: "30", optionC: "36", optionD: "42.195", correctOption: "D", difficulty: "easy", categoryId: werzis.id },
+
+    // MÛZÎK
+    { text: "'Kilam' di muzîka Kurdî de çi dibe?", optionA: "Stran bê deng", optionB: "Helbestê bê nav", optionC: "Stran bi gotin", optionD: "Stran bê temam", correctOption: "C", difficulty: "easy", categoryId: muzik.id },
+    { text: "Dengbêjî gelemperî kîjan amûr bi rê kirin?", optionA: "Tembûr", optionB: "Bilûr", optionC: "Bi bêamûrî (dengê xwe)", optionD: "Def", correctOption: "C", difficulty: "medium", categoryId: muzik.id },
+    { text: "Kîjan genre di nav muzîka dijîtal de ji 2010'an pêş ket?", optionA: "Synthwave", optionB: "Barok", optionC: "Grunge", optionD: "Polka", correctOption: "A", difficulty: "medium", categoryId: muzik.id },
+
+    // WÊJE / ÇÎROK / KÛLTÛR
+    { text: "Edebiyata Kurdî de 'çîrokbêj' kî ye?", optionA: "Yek ku dengê bilûr lêdixebite", optionB: "Yek ku stranan dengdixwîne", optionC: "Yek ku çîrokê bi dengê xwe dibêje", optionD: "Yek ku deng û saz bi hev re dixebite", correctOption: "C", difficulty: "easy", categoryId: weje.id },
+    { text: "Motîfa 'govendê dengbêjî' di çi kesîtî da hebûnê zêde dike?", optionA: "Saz", optionB: "Helftina daneyî", optionC: "Çarper", optionD: "Deng û gov", correctOption: "D", difficulty: "medium", categoryId: weje.id },
+    { text: "'Modernizm' di edebiyatê de di berçehiya çi tiştan de tê zanîn?", optionA: "Sêwirî û raqameyên klîşeyî", optionB: "Qeydbûna pergalên kevn", optionC: "Şikandina form û şûna xwe bigre", optionD: "Rêzê heftiyê", correctOption: "C", difficulty: "hard", categoryId: weje.id },
   ];
 
   for (const q of questions) {
