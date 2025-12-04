@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 
 /// Mîhengên API.
 class ApiConfig {
-  // Production URL - Deploy ettikten sonra burayı güncelleyin
-  static const String _productionUrl = 'https://pirs-backend-production.up.railway.app';
+  // Production URL - Render.com
+  static const String _productionUrl = 'https://pirs-backend.onrender.com';
   
   // Development URL
   static const String _developmentUrl = 'http://localhost:4000';
