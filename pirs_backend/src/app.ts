@@ -1,0 +1,44 @@
+import express from "express";
+import cors from "cors";
+
+import authRoutes from "./routes/authRoutes";
+import categoryRoutes from "./routes/categoryRoutes";
+import questionRoutes from "./routes/questionRoutes";
+import gameRoutes from "./routes/gameRoutes";
+import leaderboardRoutes from "./routes/leaderboardRoutes";
+import adminRoutes from "./routes/adminRoutes";
+import { requestLogger } from "./middleware/requestLogger";
+
+const app = express();
+
+// CORS ayarları - production ve development için
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [
+        'https://pirs-kurmanci.vercel.app',
+        'https://pirs-flutter.vercel.app',
+        /\.vercel\.app$/,
+        /\.netlify\.app$/,
+      ]
+    : ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:8080'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(requestLogger);
+
+app.get("/health", (_req, res) => {
+  res.json({ status: "ok" });
+});
+
+app.use("/auth", authRoutes);
+app.use("/categories", categoryRoutes);
+app.use("/questions", questionRoutes);
+app.use("/games", gameRoutes);
+app.use("/leaderboard", leaderboardRoutes);
+app.use("/admin", adminRoutes);
+
+export default app;

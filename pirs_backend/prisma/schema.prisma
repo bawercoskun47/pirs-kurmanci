@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String        @id @default(cuid())
+  email           String        @unique
+  passwordHash    String
+  nickname        String
+  avatarUrl       String?
+  level           Int           @default(1)
+  xp              Int           @default(0)
+  totalGames      Int           @default(0)
+  totalWins       Int           @default(0)
+  totalCorrect    Int           @default(0)
+  totalQuestions  Int           @default(0)
+  streak          Int           @default(0)
+  bestStreak      Int           @default(0)
+  lastPlayedAt    DateTime?
+  createdAt       DateTime      @default(now())
+  sessions        GameSession[]
+  questions       Question[]    @relation("UserQuestions")
+  badges          UserBadge[]
+  matchesAsPlayer1 MultiplayerMatch[] @relation("Player1")
+  matchesAsPlayer2 MultiplayerMatch[] @relation("Player2")
+  roomsCreated    GameRoom[]    @relation("RoomCreator")
+  roomParticipants RoomParticipant[]
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  nameKu      String?    // Kürtçe isim
+  description String?
+  icon        String?    // Emoji veya icon adı
+  color       String?    // Hex renk kodu
+  questions   Question[]
+}
+
+model Question {
+  id            String     @id @default(cuid())
+  text          String
+  optionA       String
+  optionB       String
+  optionC       String
+  optionD       String
+  correctOption String
+  difficulty    String     // easy, medium, hard, expert
+  explanation   String?    // Cevap açıklaması
+  imageUrl      String?    // Soru görseli
+  timesPlayed   Int        @default(0)
+  timesCorrect  Int        @default(0)
+  createdAt     DateTime   @default(now())
+  categoryId    String
+  category      Category   @relation(fields: [categoryId], references: [id])
+  authorId      String?
+  author        User?      @relation("UserQuestions", fields: [authorId], references: [id])
+}
+
+model GameSession {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  score           Int
+  totalQuestions  Int
+  correctAnswers  Int
+  gameMode        String   @default("classic") // classic, timed, survival, practice
+  categoryId      String?
+  difficulty      String?
+  duration        Int?     // saniye cinsinden süre
+  xpEarned        Int      @default(0)
+  createdAt       DateTime @default(now())
+}
+
+model Badge {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  nameKu      String?
+  description String
+  icon        String
+  color       String
+  requirement String      // JSON olarak gereksinimler
+  users       UserBadge[]
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  badgeId   String
+  badge     Badge    @relation(fields: [badgeId], references: [id])
+  earnedAt  DateTime @default(now())
+
+  @@unique([userId, badgeId])
+}
+
+model GameRoom {
+  id            String    @id @default(cuid())
+  code          String    @unique // 6 haneli oda kodu
+  name          String
+  creatorId     String
+  creator       User      @relation("RoomCreator", fields: [creatorId], references: [id])
+  maxPlayers    Int       @default(4)
+  gameMode      String    @default("classic")
+  categoryId    String?
+  difficulty    String?
+  questionCount Int       @default(10)
+  timePerQuestion Int     @default(20) // saniye
+  status        String    @default("waiting") // waiting, playing, finished
+  createdAt     DateTime  @default(now())
+  startedAt     DateTime?
+  finishedAt    DateTime?
+  participants  RoomParticipant[]
+  matches       MultiplayerMatch[]
+}
+
+model RoomParticipant {
+  id        String   @id @default(cuid())
+  roomId    String
+  room      GameRoom @relation(fields: [roomId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  score     Int      @default(0)
+  isReady   Boolean  @default(false)
+  isOnline  Boolean  @default(true)
+  joinedAt  DateTime @default(now())
+
+  @@unique([roomId, userId])
+}
+
+model MultiplayerMatch {
+  id            String   @id @default(cuid())
+  roomId        String?
+  room          GameRoom? @relation(fields: [roomId], references: [id])
+  player1Id     String
+  player1       User     @relation("Player1", fields: [player1Id], references: [id])
+  player2Id     String?
+  player2       User?    @relation("Player2", fields: [player2Id], references: [id])
+  player1Score  Int      @default(0)
+  player2Score  Int      @default(0)
+  winnerId      String?
+  gameMode      String
+  status        String   @default("waiting") // waiting, playing, finished
+  createdAt     DateTime @default(now())
+  finishedAt    DateTime?
+}
+
+model DailyChallenge {
+  id            String   @id @default(cuid())
+  date          DateTime @unique @db.Date
+  categoryId    String?
+  difficulty    String
+  questionIds   String   // JSON array
+  xpReward      Int      @default(50)
+  createdAt     DateTime @default(now())
+}
