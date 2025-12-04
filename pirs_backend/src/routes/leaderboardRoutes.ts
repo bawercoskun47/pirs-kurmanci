@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 
 import prisma from "../lib/prisma";
 
@@ -20,7 +20,7 @@ function getDateFilter(period: Period): Date | null {
   }
 }
 
-router.get("/", async (req, res) => {
+router.get("/", async (req: Request, res: Response) => {
   const { period = "allTime" } = req.query;
   const filterDate = getDateFilter(period as Period);
 

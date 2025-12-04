@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 
 import prisma from "../lib/prisma";
 
@@ -14,7 +14,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-router.get("/", async (req, res) => {
+router.get("/", async (req: Request, res: Response) => {
   const { categoryId, limit = "10", difficulty } = req.query;
   const take = Math.min(parseInt(limit as string, 10) || 10, 20);
 
@@ -61,7 +61,7 @@ router.get("/", async (req, res) => {
 });
 
 // Tek soru getir
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req: Request, res: Response) => {
   const question = await prisma.question.findUnique({
     where: { id: req.params.id },
     include: {

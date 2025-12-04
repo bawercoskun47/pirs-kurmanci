@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Router, Response } from "express";
 
 import prisma from "../lib/prisma";
 import { authenticate, AuthenticatedRequest } from "../middleware/authMiddleware";
 
 const router = Router();
 
-router.post("/finish", authenticate, async (req: AuthenticatedRequest, res) => {
+router.post("/finish", authenticate, async (req: AuthenticatedRequest, res: Response) => {
   const { score, totalQuestions, correctAnswers } = req.body;
 
   if (
@@ -29,7 +29,7 @@ router.post("/finish", authenticate, async (req: AuthenticatedRequest, res) => {
   res.status(201).json(session);
 });
 
-router.get("/stats", authenticate, async (req: AuthenticatedRequest, res) => {
+router.get("/stats", authenticate, async (req: AuthenticatedRequest, res: Response) => {
   const userId = req.userId!;
 
   const [aggregate, bestSession, totalSessions] = await Promise.all([
